@@ -81,8 +81,8 @@ function adicionarDespesaNaLista(novaDespesa) {
     try {
         // 12º
         // Criar elemento para adicionar na lista
-        const itemDespesa = document.createElement("li"); // 13º Criar li
-        itemDespesa.classList.add("expense"); // 14ª Adicionando a classe expense no li
+        const liItemDespesa = document.createElement("li"); // 13º Criar li
+        liItemDespesa.classList.add("expense"); // 14ª Adicionando a classe expense no li
 
         // 15º 
         // Criar o icone da categoria
@@ -96,23 +96,38 @@ function adicionarDespesaNaLista(novaDespesa) {
         divDespesaInfo.classList.add("expense-info") // 25 Adicionando a classe expense-info na div
 
         // 26 Criar <strong>Almoço</strong> da div
-        const nomeDespesa = document.createElement("strong"); // 27 Criado
-        nomeDespesa.textContent = novaDespesa.nome_despesa // 28 Adiciona texto no sgrong
+        const strongNomeDespesa = document.createElement("strong"); // 27 Criado
+        strongNomeDespesa.textContent = novaDespesa.nome_despesa // 28 Adiciona texto no sgrong
 
         // 29 Criar <span>Alimentação</span> caregoria
-        const categoriaDespesa = document.createElement("span"); // 30 Criado
-        categoriaDespesa.textContent = novaDespesa.nome_categoria // 31 Adiciona texto no span
+        const spanCategoriaDespesa = document.createElement("span"); // 30 Criado
+        spanCategoriaDespesa.textContent = novaDespesa.nome_categoria // 31 Adiciona texto no span
 
         
         // 32 Adicionar strong e span dentro da div
-        divDespesaInfo.append(nomeDespesa, categoriaDespesa)
+        divDespesaInfo.append(strongNomeDespesa, spanCategoriaDespesa)
+
+
+        // 34 Criar o <span class="expense-amount"> que vai dentro do li
+        const spanValorDespesa = document.createElement("span");
+        spanValorDespesa.classList.add("expense-amount") // 35 adicionar classe
+
+        // 36 usar o innnerHtnl para criar o <small>R$</small> que vai dentro do span, com sintaxe html
+        spanValorDespesa.innerHTML = `<small>R$</small>${novaDespesa.valor_despesa.toUpperCase().replace("R$", "")}`
+
+
+        // 38 Adicionar icone de deletar <img src="./img/remove.svg" alt="remover" class="remove-icon" />
+        const imgIconeRemover = document.createElement("img")
+        imgIconeRemover.classList.add("remove-icon") // 39 Adiconnar classe remove-icon
+        imgIconeRemover.setAttribute("src", "./img/remove.svg") // 40 setando src da img
+        imgIconeRemover.setAttribute("alt", "remover") // 41 setando alt da img
 
 
         // 20
         // Adiciona informações no item ( img na li e div na li)
-        itemDespesa.append(iconeDespesa, divDespesaInfo) // 21 Adiciona o img (icone) no li ----  // 33 adiciona div no li
+        liItemDespesa.append(iconeDespesa, divDespesaInfo, spanValorDespesa, imgIconeRemover) // 21 Adiciona o img (icone) no li ----  // 33 adiciona div no li ---- // 37 adicionar o span dentro do li ---- // 42 adicionando icone de remover
         
-        listaDespesas.append(itemDespesa) // 22 Adiciona o li na ul
+        listaDespesas.append(liItemDespesa) // 22 Adiciona o li na ul
 
         
     } catch (error) {

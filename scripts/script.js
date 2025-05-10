@@ -8,6 +8,7 @@
 
     // Selecionar elementos da list
     const listaDespesas = document.querySelector("ul"); // 19
+    const totalDeDespesas = document.querySelector("aside header h2"); // 57 selecionar total geral da lista
 
 
     // 48 Selecionar quatidade de despesas
@@ -46,8 +47,6 @@
 
         // 11ºchamar função para adicionar item na lista
         adicionarDespesaNaLista(novaDespesa); 
-
-        console.log(novaDespesa) // depurar
 
     }
 // Fim Eventos
@@ -140,6 +139,7 @@
 
         // 46 obs : vai chamar essa função depois que adicionar algum item na lista
 
+        
 
         try {
             // 45 recuperar quantidade de itens da lista -- ( (li)s da ul )
@@ -148,6 +148,49 @@
             // 49 Atualizar a quantidade de despesas e mudar o texto despesa para o plural ou singular
             quantidadeDeDespesas.textContent = `${itens.length} ${itens.length > 1 ? "despesas" : "despesa"}` // if ternário para verificar a quantidade e exibir plural ou singular
 
+
+            // 50 Variável para incrementar o total ( soma dos valores das despesas )
+            let total = 0
+
+            // 51 Percorrer os li's da da lista ( ul )
+            for(let item = 0; item < itens.length; item++){
+
+                // 52 capturar o valor
+                const valorDoItem = itens[item].querySelector(".expense-amount")
+
+                // 53 Remover caracteres não numéricos
+                let valor = valorDoItem.textContent.replace(/[^\d]/g, "").replace(",", ".")
+
+                // 54 convertes para float para pegar números quebrados
+                valor = parseFloat(valor)
+
+                // 55 Verificar se é um número
+                if (isNaN(total)) {
+                    return alert("Não foi possível atualizar os totais de despesas")
+                }
+
+                // 56 Incrementar o total ( somar )
+                total += Number(valor)
+
+            }
+
+            // 58 Mostar o total no html
+            // totalDeDespesas.textContent = formatarValor(total) // Desta forma o total não fica formatado o R$ fica em negrito
+
+            // 59 Criar span para adicionar o R$ formatado
+            const spanTotal = document.createElement("small")
+
+            // 60 adicionar o R$ na span
+            spanTotal.textContent = "R$"
+
+            //  61 Pegar o total e retirar o R$ que já vem da nossa função formatarValor()
+            total = formatarValor(total).toUpperCase().replace("R$", "")
+
+            // 63 Limpar o conteúdo do elemento , caso não limpe aparece todos os valores incrementados em vez de mostrar somente a soma
+            totalDeDespesas.innerHTML = ""
+
+            // 62 Adicionar o span e o total em <h2><small>R$</small>0,00</h2>
+            totalDeDespesas.append(spanTotal, total)
             
         } catch (error) {
             alert("Não foi possível atualizar os totais de despesas") // 44 

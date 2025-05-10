@@ -10,7 +10,7 @@
     const listaDespesas = document.querySelector("ul"); // 19
 
 
-    // 38 Selecionar quatidade de despesas
+    // 48 Selecionar quatidade de despesas
     const quantidadeDeDespesas = document.querySelector("aside header p span"); // selecionar em cascata
 
 // Fim Selecionar elementos
@@ -127,7 +127,7 @@
             
             listaDespesas.append(liItemDespesa) // 22 Adiciona o li na ul
 
-            atualizaTotalDespesas() // 37 função para atualizar total
+            atualizaTotalDespesas() // 47 função para atualizar total
 
             
         } catch (error) {
@@ -138,19 +138,19 @@
     // 43 Atualizar total de despesas 
     function atualizaTotalDespesas() {
 
-        // 36 obs : vai chamar essa função depois que adicionar algum item na lista
+        // 46 obs : vai chamar essa função depois que adicionar algum item na lista
 
 
         try {
-            // 35 recuperar quantidade de itens da lista -- ( (li)s da ul )
+            // 45 recuperar quantidade de itens da lista -- ( (li)s da ul )
             const itens = listaDespesas.children // pega os filhos da ul, que são os (li)s 
 
-            // 39 Atualizar a quantidade de despesas e mudar o texto despesa para o plural ou singular
+            // 49 Atualizar a quantidade de despesas e mudar o texto despesa para o plural ou singular
             quantidadeDeDespesas.textContent = `${itens.length} ${itens.length > 1 ? "despesas" : "despesa"}` // if ternário para verificar a quantidade e exibir plural ou singular
 
             
         } catch (error) {
-            alert("Não foi possível atualizar os totais de despesas") // 34 
+            alert("Não foi possível atualizar os totais de despesas") // 44 
         }
     }
 

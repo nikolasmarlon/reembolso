@@ -20,8 +20,6 @@
 //////////////////////////////////////////////////////////////////////
 
 // Eventos
-
-
     // 2º
     // aceitar somente números neste campo
     valor.oninput = () => {
@@ -53,9 +51,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-
 // Funções
-
     // 3º Formatar valor de input - valor da despesa
     function formatarValor(valor) {
 
@@ -126,7 +122,12 @@
             
             listaDespesas.append(liItemDespesa) // 22 Adiciona o li na ul
 
+            // 71 chamar função para limpar campos do form
+            limparCampos()
+
+            
             atualizaTotalDespesas() // 47 função para atualizar total
+
 
             
         } catch (error) {
@@ -197,5 +198,32 @@
         }
     }
 
+    // 64 pegar evento para capturar o clique nos itens da lista e passa e usar função anônima
+    listaDespesas.addEventListener("click", function (evento){
+        // 65 verificar se o elemento clicado é o ícone de remover
+        if(evento.target.classList.contains("remove-icon")){
+           
+            // 66 Precisa selecionar o elemento pai do icone de remover, que é a li com .closest ( pega o pai mais próximo)
+            const liItem = evento.target.closest(".expense")
 
+            liItem.remove() // 67 Remover o item da lista, ou seja , remover o li selecionado do ul
+
+            // 68 Depois precisa atualizar o total das despesas
+            atualizaTotalDespesas()
+
+        }
+    })
+
+
+    // 69 Função para limpar campos do formulário e melhorar usabilidade
+    function limparCampos(){
+
+        // 70 pegar os campos e limpar 
+        valor.value = ""
+        categoria.value = ""
+        despesa.value = ""
+
+        // 72 colocar o foco em um campo do form
+        despesa.focus()
+    }
 // Fim Funções

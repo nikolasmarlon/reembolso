@@ -4,7 +4,7 @@ Aplicação web para gerenciamento de solicitações de reembolso de despesas.
 
 ## 🚀 Demonstração
 
-Acesse a aplicação ao vivo: [https://nikolasmarlon.github.io/reembolso/](https://nikolasmarlon.github.io/reembolso/)
+Acesse a aplicação ao vivo: [https://nikolasmarlon/reembolso/](https://nikolasmarlon.github.io/reembolso/)
 
 ## 📸 Capturas de Tela
 
